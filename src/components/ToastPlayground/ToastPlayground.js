@@ -11,7 +11,12 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
     const [message, setMessage] = React.useState('');
     const [chosen, setChosen] = React.useState('notice');
-    const [toasts, setToasts] = React.useState([{message: 'Example notice toast', variant: 'notice'}, {message: 'Example error toast', variant: 'error'}]);
+    const [toasts, setToasts] = React.useState([{message: 'Example notice toast', variant: 'notice', id: 1}, {message: 'Example error toast', variant: 'error', id: 2}]);
+
+    function handleToastClose(id) {
+        const newToasts = toasts.filter((item) => item.id !== id);
+        setToasts(newToasts);
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -20,7 +25,7 @@ function ToastPlayground() {
                 <h1>Toast Playground</h1>
             </header>
 
-                <ToastShelf toasts={toasts} setToast={setToasts}/>
+                <ToastShelf toasts={toasts} handleToastClose={handleToastClose}/>
 
 
             <div className={styles.controlsWrapper}>
