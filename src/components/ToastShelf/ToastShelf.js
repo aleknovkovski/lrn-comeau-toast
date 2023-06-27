@@ -3,14 +3,12 @@ import React from 'react';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-function ToastShelf() {
-    const [Toasts, setToasts] = React.useState([{message: 'Example notice toast', variant: 'notice'}, {message: 'Example error toast', variant: 'error'}]);
+function ToastShelf({toasts}) {
 
   return (
     <ol className={styles.wrapper}>
-        {Toasts.map((item) => (
-            <Toast variant={item.variant}
-                   handleToastClose={() => setToasts(Toasts.filter((toast) => toast !== item))}>
+        {toasts.map((item) => (
+            <Toast variant={item.variant} >
                 {item.message}
             </Toast>
         ))}
