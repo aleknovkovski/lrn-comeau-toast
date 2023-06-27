@@ -18,6 +18,13 @@ function ToastPlayground() {
         setToasts(newToasts);
     }
 
+    function submitHandler(e) {
+        e.preventDefault()
+        const newToasts = [...toasts, {message, variant: chosen, id: Date.now()}];
+        setToasts(newToasts);
+        setMessage('');
+    }
+
     return (
         <div className={styles.wrapper}>
             <header>
@@ -28,7 +35,7 @@ function ToastPlayground() {
                 <ToastShelf toasts={toasts} handleToastClose={handleToastClose}/>
 
 
-            <div className={styles.controlsWrapper}>
+            <form className={styles.controlsWrapper} onSubmit={(e)=> submitHandler(e)}>
                 <div className={styles.row}>
                     <label
                         htmlFor="message"
@@ -72,7 +79,7 @@ function ToastPlayground() {
                         <Button>Pop Toast!</Button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
