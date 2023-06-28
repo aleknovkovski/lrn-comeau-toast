@@ -13,12 +13,11 @@ function ToastPlayground() {
     const [message, setMessage] = React.useState('');
     const [chosen, setChosen] = React.useState('notice');
 
-    const { toasts, setToasts, handleToastClose } = React.useContext(ToastsContext);
+    const { toasts, handleToastClose, createNewToast } = React.useContext(ToastsContext);
 
     function submitHandler(e) {
         e.preventDefault()
-        const newToasts = [...toasts, {message, variant: chosen, id: Date.now()}];
-        setToasts(newToasts);
+        createNewToast(message, chosen);
         setMessage('');
     }
 

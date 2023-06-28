@@ -8,7 +8,13 @@ function ToastProvider({children}) {
     const newToasts = toasts.filter((item) => item.id !== id);
     setToasts(newToasts);
   }
-  return <ToastsContext.Provider value={{toasts, setToasts, handleToastClose}}>
+
+  function createNewToast(message, variant) {
+    const newToasts = [...toasts, {message, variant, id: Date.now()}];
+    setToasts(newToasts);
+  }
+
+  return <ToastsContext.Provider value={{toasts, handleToastClose, createNewToast}}>
     {children}
   </ToastsContext.Provider>;
 }
