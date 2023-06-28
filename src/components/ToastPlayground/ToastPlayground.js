@@ -19,6 +19,7 @@ function ToastPlayground() {
         e.preventDefault()
         createNewToast(message, chosen);
         setMessage('');
+        setChosen('notice')
     }
 
     return (
