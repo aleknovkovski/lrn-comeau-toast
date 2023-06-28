@@ -3,20 +3,17 @@ import React from 'react';
 import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
-import Toast from "../Toast";
 import ToastShelf from "../ToastShelf";
+
+import {ToastsContext} from '../ToastProvider';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
     const [message, setMessage] = React.useState('');
     const [chosen, setChosen] = React.useState('notice');
-    const [toasts, setToasts] = React.useState([]);
 
-    function handleToastClose(id) {
-        const newToasts = toasts.filter((item) => item.id !== id);
-        setToasts(newToasts);
-    }
+    const { toasts, setToasts, handleToastClose } = React.useContext(ToastsContext);
 
     function submitHandler(e) {
         e.preventDefault()
